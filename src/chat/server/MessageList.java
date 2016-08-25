@@ -1,4 +1,4 @@
-package ua.kiev.prog;
+package chat.server;
 
 import java.util.ArrayList;
 import java.util.List;

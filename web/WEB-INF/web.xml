@@ -6,7 +6,7 @@ xsi:schemaLocation="http://java.sun.com/xml/ns/javaee
 http://java.sun.com/xml/ns/javaee/web-app_2_5.xsd" version="2.5">
 	<servlet>
 		<servlet-name>GetList</servlet-name>
-		<servlet-class>ua.kiev.prog.GetListServlet</servlet-class>
+		<servlet-class>chat.server.GetListServlet</servlet-class>
 	</servlet>
 	<servlet-mapping>
 		<servlet-name>GetList</servlet-name>
@@ -15,7 +15,7 @@ http://java.sun.com/xml/ns/javaee/web-app_2_5.xsd" version="2.5">
 	
 	<servlet>
 		<servlet-name>Add</servlet-name>
-		<servlet-class>ua.kiev.prog.AddServlet</servlet-class>
+		<servlet-class>chat.server.AddServlet</servlet-class>
 	</servlet>
 	<servlet-mapping>
 		<servlet-name>Add</servlet-name>
@@ -24,7 +24,7 @@ http://java.sun.com/xml/ns/javaee/web-app_2_5.xsd" version="2.5">
 
 	<servlet>
 		<servlet-name>Authorization</servlet-name>
-		<servlet-class>ua.kiev.prog.AuthorizationServlet</servlet-class>
+		<servlet-class>chat.server.AuthorizationServlet</servlet-class>
 	</servlet>
 	<servlet-mapping>
 		<servlet-name>Authorization</servlet-name>

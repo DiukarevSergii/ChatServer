@@ -1,8 +1,7 @@
-package ua.kiev.prog;
+package chat.server;
 
 import java.io.IOException;
 import java.io.OutputStream;
-import java.util.List;
 
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;

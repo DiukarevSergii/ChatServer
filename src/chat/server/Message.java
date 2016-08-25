@@ -1,4 +1,4 @@
-package ua.kiev.prog;
+package chat.server;
 
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;

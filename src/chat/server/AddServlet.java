@@ -1,4 +1,4 @@
-package ua.kiev.prog;
+package chat.server;
 
 import java.io.IOException;
 import java.io.InputStream;
