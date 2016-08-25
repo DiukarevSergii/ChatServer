@@ -9,7 +9,7 @@ public class MessageList {
 	
 	private static final MessageList msgList = new MessageList();
 
-	private final List<Message> list = new ArrayList<Message>();
+	private final List<Message> list = new ArrayList<>();
 	
 	public static MessageList getInstance() {
 		return msgList;
@@ -22,7 +22,7 @@ public class MessageList {
 	}
 	
 	public synchronized String toJSON(int n) {
-		List<Message> res = new ArrayList<Message>();
+		List<Message> res = new ArrayList<>();
 		for (int i = n; i < list.size(); i++)
 			res.add(list.get(i));
 		

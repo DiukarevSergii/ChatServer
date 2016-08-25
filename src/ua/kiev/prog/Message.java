@@ -1,32 +1,31 @@
 package ua.kiev.prog;
 
-import java.io.*;
-import java.net.HttpURLConnection;
-import java.net.MalformedURLException;
-import java.net.URL;
-import java.util.Date;
-
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 
-public class Message implements Serializable {
-	private static final long serialVersionUID = 1L;
+import java.io.IOException;
+import java.io.OutputStream;
+import java.net.HttpURLConnection;
+import java.net.URL;
+import java.util.Date;
+
+public class Message {
 
 	private Date date = new Date();
 	private String from;
 	private String to;
 	private String text;
-	
+
 	public String toJSON() {
 		Gson gson = new GsonBuilder().create();
 		return gson.toJson(this);
 	}
-	
+
 	public static Message fromJSON(String s) {
 		Gson gson = new GsonBuilder().create();
 		return gson.fromJson(s, Message.class);
 	}
-	
+
 	@Override
 	public String toString() {
 		return new StringBuilder().append("[").append(date.toString())
@@ -37,21 +36,18 @@ public class Message implements Serializable {
 	public int send(String url) throws IOException {
 		URL obj = new URL(url);
 		HttpURLConnection conn = (HttpURLConnection) obj.openConnection();
-		
+
 		conn.setRequestMethod("POST");
 		conn.setDoOutput(true);
-	
-		OutputStream os = conn.getOutputStream();
-		try {
+
+		try(OutputStream os = conn.getOutputStream()) {
 			String json = toJSON();
 			os.write(json.getBytes());
-			
+
 			return conn.getResponseCode();
-		} finally {
-			os.close();
 		}
 	}
-	
+
 	public Date getDate() {
 		return date;
 	}
