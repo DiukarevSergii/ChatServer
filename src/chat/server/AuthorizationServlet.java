@@ -20,7 +20,7 @@ public class AuthorizationServlet extends HttpServlet {
             = ResourceBundle.getBundle("chat.server.resources.verifiedUsers");
 
     @Override
-    protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+    protected synchronized void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         String login = req.getParameter("login");
         String pass = req.getParameter("pass");
 
@@ -33,7 +33,7 @@ public class AuthorizationServlet extends HttpServlet {
     }
 
     @Override
-    protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+    protected synchronized void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         OutputStream os = resp.getOutputStream();
         Gson gson = new GsonBuilder().create();
         os.write(gson.toJson(usersOnline).getBytes());
