@@ -9,12 +9,12 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 import java.io.OutputStream;
-import java.util.Map;
 import java.util.ResourceBundle;
-import java.util.concurrent.ConcurrentHashMap;
+import java.util.Set;
+import java.util.concurrent.CopyOnWriteArraySet;
 
 public class AuthorizationServlet extends HttpServlet {
-    private static Map<String, Boolean> usersOnline = new ConcurrentHashMap<>();
+    private static Set<String> usersOnline = new CopyOnWriteArraySet<>();
 
     private ResourceBundle res
             = ResourceBundle.getBundle("chat.server.resources.verifiedUsers");
@@ -25,7 +25,7 @@ public class AuthorizationServlet extends HttpServlet {
         String pass = req.getParameter("pass");
 
         if (res.containsKey(login) && res.getString(login).equals(pass)){
-            usersOnline.put(login, true);
+            usersOnline.add(login);
             resp.setStatus(200);
         } else {
             resp.setStatus(2508);
@@ -37,5 +37,13 @@ public class AuthorizationServlet extends HttpServlet {
         OutputStream os = resp.getOutputStream();
         Gson gson = new GsonBuilder().create();
         os.write(gson.toJson(usersOnline).getBytes());
+    }
+
+    @Override
+    protected synchronized void doDelete(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+       String user = req.getParameter("login");
+        System.out.println(usersOnline.size());
+        usersOnline.remove(user);
+        System.out.println(usersOnline.size());
     }
 }
