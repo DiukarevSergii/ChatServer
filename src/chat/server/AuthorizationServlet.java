@@ -42,8 +42,6 @@ public class AuthorizationServlet extends HttpServlet {
     @Override
     protected synchronized void doDelete(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
        String user = req.getParameter("login");
-        System.out.println(usersOnline.size());
         usersOnline.remove(user);
-        System.out.println(usersOnline.size());
     }
 }
