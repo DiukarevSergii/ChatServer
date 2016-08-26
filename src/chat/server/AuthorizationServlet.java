@@ -14,7 +14,7 @@ import java.util.Set;
 import java.util.concurrent.CopyOnWriteArraySet;
 
 public class AuthorizationServlet extends HttpServlet {
-    private static Set<String> usersOnline = new CopyOnWriteArraySet<>();
+    static Set<String> usersOnline = new CopyOnWriteArraySet<>();
 
     private ResourceBundle res
             = ResourceBundle.getBundle("chat.server.resources.verifiedUsers");
