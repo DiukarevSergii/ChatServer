@@ -1,7 +1,5 @@
 package chat.server;
 
-import chat.server.AuthorizationServlet;
-
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
