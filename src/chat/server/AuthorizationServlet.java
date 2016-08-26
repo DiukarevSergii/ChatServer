@@ -44,4 +44,6 @@ public class AuthorizationServlet extends HttpServlet {
        String user = req.getParameter("login");
         usersOnline.remove(user);
     }
+
+
 }
