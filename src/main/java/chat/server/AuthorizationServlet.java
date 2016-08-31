@@ -17,7 +17,7 @@ public class AuthorizationServlet extends HttpServlet {
     static Set<String> usersOnline = new CopyOnWriteArraySet<>();
 
     private ResourceBundle res
-            = ResourceBundle.getBundle("chat.server.resources.verifiedUsers");
+            = ResourceBundle.getBundle("maven.java.server.resources.verifiedUsers");
 
     @Override
     protected synchronized void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
