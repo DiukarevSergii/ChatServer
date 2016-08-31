@@ -1,5 +1,8 @@
 package chat.server;
 
+import com.google.gson.Gson;
+import com.google.gson.GsonBuilder;
+
 import java.io.IOException;
 import java.io.OutputStream;
 import java.net.HttpURLConnection;
