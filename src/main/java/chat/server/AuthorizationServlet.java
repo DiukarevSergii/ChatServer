@@ -11,10 +11,10 @@ import java.io.IOException;
 import java.io.OutputStream;
 import java.util.ResourceBundle;
 import java.util.Set;
-import java.util.concurrent.CopyOnWriteArraySet;
+import java.util.TreeSet;
 
 public class AuthorizationServlet extends HttpServlet {
-    static Set<String> usersOnline = new CopyOnWriteArraySet<>();
+    static Set<String> usersOnline = new TreeSet<>();
 
     private ResourceBundle res
             = ResourceBundle.getBundle("maven.java.server.resources.verifiedUsers");
