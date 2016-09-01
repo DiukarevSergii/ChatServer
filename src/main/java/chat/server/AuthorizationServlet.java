@@ -17,14 +17,14 @@ public class AuthorizationServlet extends HttpServlet {
     static Set<String> usersOnline = new TreeSet<>();
 
     private ResourceBundle res
-            = ResourceBundle.getBundle("maven.java.server.resources.verifiedUsers");
+            = ResourceBundle.getBundle("verifiedUsers_en");
 
     @Override
     protected synchronized void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         String login = req.getParameter("login");
         String pass = req.getParameter("pass");
 
-        if (res.containsKey(login) && res.getString(login).equals(pass)){
+        if (res.containsKey(login) && res.getString(login).equals(pass)) {
             usersOnline.add(login);
             resp.setStatus(200);
         } else {
@@ -41,7 +41,7 @@ public class AuthorizationServlet extends HttpServlet {
 
     @Override
     protected synchronized void doDelete(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-       String user = req.getParameter("login");
+        String user = req.getParameter("login");
         usersOnline.remove(user);
     }
 
