@@ -4,6 +4,7 @@ import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 
 import javax.servlet.ServletException;
+import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -25,6 +26,8 @@ public class AuthorizationServlet extends HttpServlet {
         String pass = req.getParameter("pass");
 
         if (res.containsKey(login) && res.getString(login).equals(pass)) {
+            Cookie cookie = new Cookie(login, pass);
+            resp.addCookie(cookie);
             usersOnline.add(login);
             resp.setStatus(200);
         } else {
@@ -33,9 +36,14 @@ public class AuthorizationServlet extends HttpServlet {
     }
 
     @Override
-    protected synchronized void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+    protected synchronized void doGet(HttpServletRequest request, HttpServletResponse resp) throws ServletException, IOException {
         OutputStream os = resp.getOutputStream();
         Gson gson = new GsonBuilder().create();
+
+        Set<String> usersOnlineCopy = new TreeSet<>();
+        Cookie[] cookies = request.getCookies();
+        System.out.println("Your cookies length is " + cookies); //why is cookies null??
+
         os.write(gson.toJson(usersOnline).getBytes());
     }
 
